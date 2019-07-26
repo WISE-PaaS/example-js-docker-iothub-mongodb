@@ -84,6 +84,8 @@ open two terminal
 
 #### you can watch the row data use Robo 3T，and the config can find in WISE-PaaS Application Environment
 
+Robo 3T create server(File => connect => Create)
+
 * address => VCAP_SERVICES => mongodb-innoworks => 0 => external_host
 * Database => VCAP_SERVICES => mongodb-innoworks => 0 => credentials => database
 * Username => VCAP_SERVICES => mongodb-innoworks => 0 => credentials => username
