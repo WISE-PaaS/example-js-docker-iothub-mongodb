@@ -32,6 +32,9 @@ Tag image to a docker hub
 
 #### Push it to docker hub
 
+    #login to the docker hub 
+    docker login
+    
     #docker push {your account/dockerhub-resp name}
     docker push WISE-PaaS/example-js-docker-iot-mongo
 
