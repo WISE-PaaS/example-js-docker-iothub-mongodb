@@ -49,7 +49,7 @@ check the `Service Instance name` in **manifest.yml** and **wise-paas service li
 #### Use cf(cloud foundry) push to WISE-PaaS
 
     #cf push --docker-image {your account/dockerhub-resp}
-    cf push WISE-PaaS/example-js-docker-iot-mongo
+    cf push --docker-image WISE-PaaS/example-js-docker-iot-mongo
     
 
 #### successful push
