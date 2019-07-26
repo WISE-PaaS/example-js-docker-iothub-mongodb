@@ -5,6 +5,16 @@ This example tell you how to use the WISE-PaaS rabbitmq service to receive and s
 #### Download this repository
 
     git clone https://github.com/WISE-PaaS/example-js-docker-iothub/
+    
+#### Check our the service name in `index.js`
+
+The service name need same as WISE-PaaS platform service name
+
+![https://github.com/WISE-PaaS/example-js-docker-iothub-mongodb/blob/master/source/service_list_service_name.PNG](https://github.com/WISE-PaaS/example-js-docker-iothub-mongodb/blob/master/source/service_list_service_name.PNG)
+
+![https://github.com/WISE-PaaS/example-js-docker-iothub-mongodb/blob/master/source/mongo_service_name_in_node.PNG](https://github.com/WISE-PaaS/example-js-docker-iothub-mongodb/blob/master/source/mongo_service_name_in_node.PNG)
+
+![https://github.com/WISE-PaaS/example-js-docker-iothub-mongodb/blob/master/source/rabbitmq_service_name_in_node.PNG](https://github.com/WISE-PaaS/example-js-docker-iothub-mongodb/blob/master/source/rabbitmq_service_name_in_node.PNG)
 
 #### Build docker image in local
  
@@ -36,6 +46,9 @@ check the Service Instance name in **manifest.yml** and **wise-paas service list
     #cf push --docker-image {your account/dockerhub-resp}
     
 
+#### successful push
+
+![https://github.com/WISE-PaaS/example-js-docker-iothub-mongodb/blob/master/source/successful.PNG](https://github.com/WISE-PaaS/example-js-docker-iothub-mongodb/blob/master/source/successful.PNG)
 
 
 Get application environment in WISE-PaaS
