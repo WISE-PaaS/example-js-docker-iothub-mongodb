@@ -5,6 +5,16 @@ This example tell you how to use the WISE-PaaS rabbitmq service to receive and s
 #### Download this repository
 
     git clone https://github.com/WISE-PaaS/example-js-docker-iothub/
+    
+#### Check our the service name in `index.js`
+
+The service name need same as WISE-PaaS platform service name
+
+![https://github.com/WISE-PaaS/example-js-docker-iothub-mongodb/blob/master/source/service_list_service_name.PNG](https://github.com/WISE-PaaS/example-js-docker-iothub-mongodb/blob/master/source/service_list_service_name.PNG)
+
+![https://github.com/WISE-PaaS/example-js-docker-iothub-mongodb/blob/master/source/mongo_service_name_in_node.PNG](https://github.com/WISE-PaaS/example-js-docker-iothub-mongodb/blob/master/source/mongo_service_name_in_node.PNG)
+
+![https://github.com/WISE-PaaS/example-js-docker-iothub-mongodb/blob/master/source/rabbitmq_service_name_in_node.PNG](https://github.com/WISE-PaaS/example-js-docker-iothub-mongodb/blob/master/source/rabbitmq_service_name_in_node.PNG)
 
 #### Build docker image in local
  
@@ -25,17 +35,23 @@ Tag image to a docker hub
     #docker push {your account/dockerhub-resp name}
     docker push WISE-PaaS/example-js-docker-iot-mongo
 
-#### Change **manifest.yml** application name to yours
+#### Change **manifest.yml** Config
 
-check the Service Instance name in **manifest.yml** and **wise-paas service list**
+change `name` in **mainfest.yml** it is your application name
+
+check the `Service Instance name` in **manifest.yml** and **wise-paas service list**
 ![https://github.com/WISE-PaaS/example-js-docker-iothub-mongodb/blob/master/source/service_list_instance_name.PNG](https://github.com/WISE-PaaS/example-js-docker-iothub-mongodb/blob/master/source/service_list_instance_name.PNG)
-![https://github.com/WISE-PaaS/example-js-docker-iothub/blob/master/source/manifestname.PNG](https://github.com/WISE-PaaS/example-js-docker-iothub/blob/master/source/manifestname.PNG)
+![https://github.com/WISE-PaaS/example-js-docker-iothub-mongodb/blob/master/source/manifest.PNG](https://github.com/WISE-PaaS/example-js-docker-iothub-mongodb/blob/master/source/manifest.PNG)
 
 #### Use cf(cloud foundry) push to WISE-PaaS
 
     #cf push --docker-image {your account/dockerhub-resp}
+    cf push WISE-PaaS/example-js-docker-iot-mongo
     
 
+#### successful push
+
+![https://github.com/WISE-PaaS/example-js-docker-iothub-mongodb/blob/master/source/successful.PNG](https://github.com/WISE-PaaS/example-js-docker-iothub-mongodb/blob/master/source/successful.PNG)
 
 
 Get application environment in WISE-PaaS
