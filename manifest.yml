@@ -1,0 +1,11 @@
+---
+applications:
+- name: example-js-docker-iotmongo
+  memory: 125M
+  disk_quota: 125M
+  command: node index.js
+services:
+- rabbitmq
+- mongodb
+env:
+  OPTIMIZE_MEMORY: true
