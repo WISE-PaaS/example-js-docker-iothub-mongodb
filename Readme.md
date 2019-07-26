@@ -79,3 +79,14 @@ open two terminal
 .
 
     node publisher.js
+
+![https://github.com/WISE-PaaS/example-js-docker-iothub-mongodb/blob/master/source/send_data_successful.PNG](https://github.com/WISE-PaaS/example-js-docker-iothub-mongodb/blob/master/source/send_data_successful.PNG)
+
+#### you can watch the row data use Robo 3T，and the config can find in WISE-PaaS Application Environment
+
+* address => VCAP_SERVICES => mongodb-innoworks => 0 => external_host
+* Database => VCAP_SERVICES => mongodb-innoworks => 0 => credentials => database
+* Username => VCAP_SERVICES => mongodb-innoworks => 0 => credentials => username
+* Password => VCAP_SERVICES => mongodb-innoworks => 0 => credentials => password
+
+![https://github.com/WISE-PaaS/example-js-docker-iothub-mongodb/blob/master/source/successs_save.PNG](https://github.com/WISE-PaaS/example-js-docker-iothub-mongodb/blob/master/source/successs_save.PNG)
