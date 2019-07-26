@@ -29,7 +29,7 @@ Tag image to a docker hub
 
 check the Service Instance name in **manifest.yml** and **wise-paas service list**
 ![https://github.com/WISE-PaaS/example-js-docker-iothub-mongodb/blob/master/source/service_list_instance_name.PNG](https://github.com/WISE-PaaS/example-js-docker-iothub-mongodb/blob/master/source/service_list_instance_name.PNG)
-![https://github.com/WISE-PaaS/example-js-docker-iothub/blob/master/source/manifestname.PNG](https://github.com/WISE-PaaS/example-js-docker-iothub/blob/master/source/manifestname.PNG)
+![https://github.com/WISE-PaaS/example-js-docker-iothub-mongodb/blob/master/source/manifest.PNG](https://github.com/WISE-PaaS/example-js-docker-iothub-mongodb/blob/master/source/manifest.PNG)
 
 #### Use cf(cloud foundry) push to WISE-PaaS
 
