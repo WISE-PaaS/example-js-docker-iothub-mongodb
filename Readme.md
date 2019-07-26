@@ -82,7 +82,7 @@ open two terminal
 
 ![https://github.com/WISE-PaaS/example-js-docker-iothub-mongodb/blob/master/source/send_data_successful.PNG](https://github.com/WISE-PaaS/example-js-docker-iothub-mongodb/blob/master/source/send_data_successful.PNG)
 
-#### you can watch the row data use Robo 3T，and the config can find in WISE-PaaS Application Environment
+#### you can watch the row data use Robo 3T，and the config can find in WISE-PaaS Application Environment(WISE-PaaS/EnSaaS => application List => click application => environment)
 
 Robo 3T create server(File => connect => Create)
 
