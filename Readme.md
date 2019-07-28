@@ -68,7 +68,7 @@ check the `Service Instance name` in **manifest.yml** and **wise-paas service li
 
 ![Imgur](https://i.imgur.com/VVMcYO8.png)
 
-![https://github.com/WISE-PaaS/example-js-docker-iothub-mongodb/blob/master/source/manifest.PNG](https://github.com/WISE-PaaS/example-js-docker-iothub-mongodb/blob/master/source/manifest.PNG)
+![Imgur](https://i.imgur.com/9KeaeJ8.png)
 
 #### Use cf(cloud foundry) push to WISE-PaaS
 
