@@ -65,7 +65,9 @@ Tag image to a docker hub
 change `name` in **mainfest.yml** it is your application name
 
 check the `Service Instance name` in **manifest.yml** and **wise-paas service list**
-![https://github.com/WISE-PaaS/example-js-docker-iothub-mongodb/blob/master/source/service_list_instance_name.PNG](https://github.com/WISE-PaaS/example-js-docker-iothub-mongodb/blob/master/source/service_list_instance_name.PNG)
+
+![Imgur](https://i.imgur.com/VVMcYO8.png)
+
 ![https://github.com/WISE-PaaS/example-js-docker-iothub-mongodb/blob/master/source/manifest.PNG](https://github.com/WISE-PaaS/example-js-docker-iothub-mongodb/blob/master/source/manifest.PNG)
 
 #### Use cf(cloud foundry) push to WISE-PaaS
