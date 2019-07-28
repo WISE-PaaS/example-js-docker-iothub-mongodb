@@ -2,6 +2,28 @@
 
 This example tell you how to use the WISE-PaaS rabbitmq service to receive and send message use Mongodb save it，we use docker package our application。
 
+#### Environment Prepare
+
+node.js(need include npm)
+
+[https://nodejs.org/en/](https://nodejs.org/en/)
+
+cf-cli
+
+[https://docs.cloudfoundry.org/cf-cli/install-go-cli.html](https://docs.cloudfoundry.org/cf-cli/install-go-cli.html)
+
+docker
+
+[https://www.docker.com/](https://www.docker.com/)
+
+MongoDB && Robo 3T
+
+https://www.mongodb.com/download-center/community
+(MongoDB Server)
+
+https://robomongo.org/download
+(Robo 3T)
+
 #### Download this repository
 
     git clone https://github.com/WISE-PaaS/example-js-docker-iothub/
