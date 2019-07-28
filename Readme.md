@@ -32,11 +32,11 @@ https://robomongo.org/download
 
 The service name need same as WISE-PaaS platform service name
 
-![https://github.com/WISE-PaaS/example-js-docker-iothub-mongodb/blob/master/source/service_list_service_name.PNG](https://github.com/WISE-PaaS/example-js-docker-iothub-mongodb/blob/master/source/service_list_service_name.PNG)
+[Imgur](https://i.imgur.com/6777rmg.png)
 
-![https://github.com/WISE-PaaS/example-js-docker-iothub-mongodb/blob/master/source/mongo_service_name_in_node.PNG](https://github.com/WISE-PaaS/example-js-docker-iothub-mongodb/blob/master/source/mongo_service_name_in_node.PNG)
+[Imgur](https://i.imgur.com/Q6W8Z0S.png)
 
-![https://github.com/WISE-PaaS/example-js-docker-iothub-mongodb/blob/master/source/rabbitmq_service_name_in_node.PNG](https://github.com/WISE-PaaS/example-js-docker-iothub-mongodb/blob/master/source/rabbitmq_service_name_in_node.PNG)
+[Imgur](https://i.imgur.com/5fMbEiX.png)
 
 #### Build docker image in local
  
