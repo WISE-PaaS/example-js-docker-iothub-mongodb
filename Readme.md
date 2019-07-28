@@ -32,11 +32,11 @@ https://robomongo.org/download
 
 The service name need same as WISE-PaaS platform service name
 
-[Imgur](https://i.imgur.com/6777rmg.png)
+![Imgur](https://i.imgur.com/6777rmg.png)
 
-[Imgur](https://i.imgur.com/Q6W8Z0S.png)
+![Imgur](https://i.imgur.com/Q6W8Z0S.png)
 
-[Imgur](https://i.imgur.com/5fMbEiX.png)
+![Imgur](https://i.imgur.com/5fMbEiX.png)
 
 #### Build docker image in local
  
