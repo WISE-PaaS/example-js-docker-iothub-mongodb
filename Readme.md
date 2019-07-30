@@ -6,7 +6,7 @@ This example tell you how to use the WISE-PaaS rabbitmq service to receive and s
 
 [IotHub](https://advantech.wistia.com/medias/up3q2vxvn3)
 
-#### Environment Prepare
+## Environment Prepare
 
 #### node.js(need include npm)
 
