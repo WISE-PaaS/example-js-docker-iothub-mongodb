@@ -26,7 +26,7 @@ https://robomongo.org/download
 
 #### Download this repository
 
-    git clone https://github.com/WISE-PaaS/example-js-docker-iothub/
+    git clone 
     
 #### Check our the service name in `index.js`
 
