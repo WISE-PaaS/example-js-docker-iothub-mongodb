@@ -2,32 +2,38 @@
 
 This example tell you how to use the WISE-PaaS rabbitmq service to receive and send message use Mongodb save it，we use docker package our application。
 
+[cf-introduce](https://advantech.wistia.com/medias/ll0ov3ce9e)
+
+[IotHub](https://advantech.wistia.com/medias/up3q2vxvn3)
+
 #### Environment Prepare
 
-node.js(need include npm)
+#### node.js(need include npm)
 
-[https://nodejs.org/en/](https://nodejs.org/en/)
+[node](https://nodejs.org/en/)
 
-cf-cli
+#### cf-cli
 
-[https://docs.cloudfoundry.org/cf-cli/install-go-cli.html](https://docs.cloudfoundry.org/cf-cli/install-go-cli.html)
+[cf-cli](https://docs.cloudfoundry.org/cf-cli/install-go-cli.html)
 
-docker
+Use to push application to WISE-PaaS，if you want to know more you can see this video
 
-[https://www.docker.com/](https://www.docker.com/)
+#### Docker
+
+[docker](https://www.docker.com/)
+
+Use to packaged our application
 
 MongoDB && Robo 3T
 
-https://www.mongodb.com/download-center/community
-(MongoDB Server)
+[MongoDB-Server]https://www.mongodb.com/download-center/community
 
-https://robomongo.org/download
-(Robo 3T)
+[Robo-3T]https://robomongo.org/download
 
 #### Download this repository
 
-    git clone 
-    
+    git clone https://github.com/WISE-PaaS/example-js-docker-iothub-mongodb.git
+
 #### Check our the service name in `index.js`
 
 The service name need same as WISE-PaaS platform service name
@@ -39,7 +45,7 @@ The service name need same as WISE-PaaS platform service name
 ![Imgur](https://i.imgur.com/5fMbEiX.png)
 
 #### Build docker image in local
- 
+
     docker build -t {image name} .
     docker build -t example-js-docker-iot-mongo .
 
@@ -51,12 +57,11 @@ Tag image to a docker hub
     #docker tag {image name} {your account/dockerhub-resp name}
     docker tag example-js-docker-iot-mongo WISE-PaaS/example-js-docker-iot-mongo
 
-
 #### Push it to docker hub
 
-    #login to the docker hub 
+    #login to the docker hub
     docker login
-    
+
     #docker push {your account/dockerhub-resp name}
     docker push WISE-PaaS/example-js-docker-iot-mongo
 
@@ -74,34 +79,28 @@ check the `Service Instance name` in **manifest.yml** and **wise-paas service li
 
     #cf push --docker-image {your account/dockerhub-resp}
     cf push --docker-image WISE-PaaS/example-js-docker-iot-mongo
-    
 
 #### successful push
 
 ![https://github.com/WISE-PaaS/example-js-docker-iothub-mongodb/blob/master/source/successful.PNG](https://github.com/WISE-PaaS/example-js-docker-iothub-mongodb/blob/master/source/successful.PNG)
 
-
 Get application environment in WISE-PaaS
 
     cf env example-js-docker-iot-mongo > env.json
 
+#### Edit the **publisher.py** `mqttUri` to mqtt=>uri you can find in env.json
 
-
-#### Edit the **publisher.py** `mqttUri` to mqtt=>uri you can find in env.json 
-
-when you get it you need to change the host to  externalHosts
+when you get it you need to change the host to externalHosts
 
 ![Imgur](https://i.imgur.com/xErDczu.png)
 
-* uri :"VCAP_SERVICES => p-rabbitmq => mqtt => uri"
-* exnternalhost : "VCAP_SERVICES" => p-rabbitmq => externalHosts
-
-
+- uri :"VCAP_SERVICES => p-rabbitmq => mqtt => uri"
+- exnternalhost : "VCAP_SERVICES" => p-rabbitmq => externalHosts
 
 open two terminal
-    
-    #cf logs {application name}
-    cf logs example-js-docker-iothub 
+
+#cf logs {application name}
+cf logs example-js-docker-iothub
 
 .
 
@@ -113,9 +112,9 @@ open two terminal
 
 Robo 3T create server(File => connect => Create)
 
-* address => VCAP_SERVICES => mongodb-innoworks => 0 => external_host
-* Database => VCAP_SERVICES => mongodb-innoworks => 0 => credentials => database
-* Username => VCAP_SERVICES => mongodb-innoworks => 0 => credentials => username
-* Password => VCAP_SERVICES => mongodb-innoworks => 0 => credentials => password
+- address => VCAP_SERVICES => mongodb-innoworks => 0 => external_host
+- Database => VCAP_SERVICES => mongodb-innoworks => 0 => credentials => database
+- Username => VCAP_SERVICES => mongodb-innoworks => 0 => credentials => username
+- Password => VCAP_SERVICES => mongodb-innoworks => 0 => credentials => password
 
 ![https://github.com/WISE-PaaS/example-js-docker-iothub-mongodb/blob/master/source/successs_save.PNG](https://github.com/WISE-PaaS/example-js-docker-iothub-mongodb/blob/master/source/successs_save.PNG)
