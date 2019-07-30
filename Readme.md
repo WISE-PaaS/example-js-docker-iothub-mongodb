@@ -40,9 +40,92 @@ The service name need same as WISE-PaaS platform service name
 
 ![Imgur](https://i.imgur.com/6777rmg.png)
 
+The `vcapServices` can get the application environment on WISE-PaaS，so we can get our service config to connect it。
+
 ![Imgur](https://i.imgur.com/Q6W8Z0S.png)
 
 ![Imgur](https://i.imgur.com/5fMbEiX.png)
+
+Notice:You can add service instance by yourself
+
+![Imgur](https://i.imgur.com/ajqSsn1.png)
+
+#### Application Introduce
+
+This code can get the WISE-PaaS MongoDB service instance environment and connect it。
+
+```js
+let vcap_services = JSON.parse(process.env.VCAP_SERVICES);
+mongodb_service_name = "mongodb-innoworks";
+
+let replicaSetName =
+  vcap_services[mongodb_service_name][0].credentials.replicaSetName;
+let db =
+  vcap_services[mongodb_service_name][0].credentials.uri +
+  "?replicaSet=" +
+  replicaSetName;
+
+mongoose
+  .connect(db, { useNewUrlParser: true })
+  .then(() => console.log("Connected to the MongoDB..."))
+  .catch(err => console.log("Could not connect to MongoDB...", err));
+
+const bookSchema = new mongoose.Schema(
+  {
+    date: Date,
+    topic: String,
+    data: Number
+  },
+  { versionKey: false }
+);
+
+const Bookmq = mongoose.model("Bookmq", bookSchema);
+
+```
+
+This code can connect the rabbitmq service
+and send data to MongoDB service
+
+```js
+
+config.mqtt.options = {
+  broker: config.mqtt.broker,
+  reconnectPeriod: 1000,
+  port: config.mqtt.port,
+  username: config.mqtt.username,
+  password: config.mqtt.password
+};
+
+console.log(config.mqtt.options);
+
+config.mqtt.topic = "/hello";
+config.mqtt.retain = true; // MQTT Publish Retain
+
+// Start MQTT
+var client = mqtt.connect(config.mqtt.broker, config.mqtt.options);
+
+client.on("connect", function() {
+  client.subscribe(config.mqtt.topic);
+  console.log("[MQTT]:", "Connected.");
+});
+
+client.on("message", function(topic, message) {
+  console.log("[" + topic + "]:" + message.toString());
+
+  var d = new Date();
+  var n = d.getTime();
+  console.log("n", n);
+  console.log("topic", topic);
+  console.log("data", message.toString());
+  const bookmq = new Bookmq({
+    date: n,
+    topic: topic,
+    data: message
+  });
+
+  bookmq.save();
+});
+```
 
 #### Build docker image in local
 
@@ -53,6 +136,8 @@ The service name need same as WISE-PaaS platform service name
 
 Tag image to a docker hub  
 [Docker Hub](https://hub.docker.com/)
+
+![Imgur](https://i.imgur.com/SxiLcOH.png)
 
     #docker tag {image name} {your account/dockerhub-resp name}
     docker tag example-js-docker-iot-mongo WISE-PaaS/example-js-docker-iot-mongo
