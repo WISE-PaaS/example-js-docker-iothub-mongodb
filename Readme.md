@@ -133,8 +133,8 @@ This is the [sso](https://advantech.wistia.com/medias/vay5uug5q6) applicaition�
 
 If you don't want it，you can ignore it。
   
- #change this **`python-demo-try`** to your **application name**
-var ssoUrl = myUrl.replace('python-demo-try', 'portal-sso');
+    #change this **`python-demo-try`** to your **application name**
+    var ssoUrl = myUrl.replace('python-demo-try', 'portal-sso');
 
 
 #### Build docker image in local
