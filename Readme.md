@@ -33,6 +33,19 @@ MongoDB && Robo 3T
 #### Download this repository
 
     git clone https://github.com/WISE-PaaS/example-js-docker-iothub-mongodb.git
+    
+## Login to WISE-PaaS
+
+![Imgur](https://i.imgur.com/JNJmxFy.png)
+
+    #cf login -skip-ssl-validation -a {api.domain_name}  -u "account" -p "password"
+
+    cf login –skip-ssl-validation -a api.wise-paas.io -u xxxxx@advtech.com.tw -p xxxxxx
+
+    #check the cf status
+    cf target
+
+
 
 #### Check our the service name in `index.js`
 
