@@ -32,7 +32,11 @@ MongoDB && Robo 3T
 
 #### Download this repository
 
+    #download this repository
     git clone https://github.com/WISE-PaaS/example-js-docker-iothub-mongodb.git
+    
+    #download what package the application need
+    npm install
 
 ## Login to WISE-PaaS
 
