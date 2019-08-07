@@ -5,6 +5,12 @@ const app = express();
 
 app.use(express.json());
 
+// Typically in the hosting environment for node application, there's an env variable called 'PORT'
+const port = process.env.PORT || 3000;
+const server = app.listen(port, () =>
+  console.log(`Listening on port ${port}...`)
+);
+
 //mongodb config
 
 let vcap_services = JSON.parse(process.env.VCAP_SERVICES);
@@ -33,13 +39,6 @@ const bookSchema = new mongoose.Schema(
 
 const Bookmq = mongoose.model("Bookmq", bookSchema);
 
-//mqtt-------------------------------------------------
-// Typically in the hosting environment for node application, there's an env variable called 'PORT'
-const port = process.env.PORT || 3000;
-const server = app.listen(port, () =>
-  console.log(`Listening on port ${port}...`)
-);
-
 // Start Config
 var config = {};
 config.mqtt = {};
@@ -49,29 +48,6 @@ config.mqtt = {};
 config.timeout = 120 * 1000;
 
 config.mqtt.serviceName = "p-rabbitmq"; // 'p-rabbitmq'
-
-app.get("/", (req, res) => {
-  res.send("Hello WISE-PaaS!");
-});
-app.get("/book", (req, res) => {
-  Bookmq.find({}).then((err, books) => {
-    if (err) res.send(err);
-    else {
-      res.json(books);
-    }
-  });
-});
-
-app.post("/api/book", (req, res) => {
-  const bookmq = new Bookmq({
-    date: Date.now(),
-    topic: req.body.topic,
-    data: req.body.data
-  });
-
-  bookmq.save();
-  res.send(bookmq);
-});
 
 if (process.env.VCAP_SERVICES != null) {
   console.log("Using VCAP_SERVICES");
@@ -142,4 +118,28 @@ client.on("close", function() {
 
 client.on("offline", function() {
   console.log("[MQTT]: offline");
+});
+
+//router
+app.get("/", (req, res) => {
+  res.send("Hello WISE-PaaS!");
+});
+app.get("/book", (req, res) => {
+  Bookmq.find({}).then((err, books) => {
+    if (err) res.send(err);
+    else {
+      res.json(books);
+    }
+  });
+});
+
+app.post("/api/book", (req, res) => {
+  const bookmq = new Bookmq({
+    date: Date.now(),
+    topic: req.body.topic,
+    data: req.body.data
+  });
+
+  bookmq.save();
+  res.send(bookmq);
 });

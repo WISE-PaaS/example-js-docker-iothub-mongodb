@@ -2,9 +2,9 @@
 
 This example tell you how to use the WISE-PaaS rabbitmq service to receive and send message use Mongodb save it，we use docker package our application。
 
-[cf-introduce](https://advantech.wistia.com/medias/ll0ov3ce9e)
+[cf-introduce Training Video](https://advantech.wistia.com/medias/ll0ov3ce9e)
 
-[IotHub](https://advantech.wistia.com/medias/up3q2vxvn3)
+[IotHub Training Video](https://advantech.wistia.com/medias/up3q2vxvn3)
 
 ## Environment Prepare
 
@@ -33,7 +33,7 @@ MongoDB && Robo 3T
 #### Download this repository
 
     git clone https://github.com/WISE-PaaS/example-js-docker-iothub-mongodb.git
-    
+
 ## Login to WISE-PaaS
 
 ![Imgur](https://i.imgur.com/JNJmxFy.png)
@@ -45,27 +45,30 @@ MongoDB && Robo 3T
     #check the cf status
     cf target
 
+## Application Introduce
 
+#### `index.js`
 
-#### Check our the service name in `index.js`
+Simple backend application，and we need to have the `express`、`mqtt`、`mongoose` package to help us build this application。
 
-The service name need same as WISE-PaaS platform service name
+```js
+const express = require("express");
+const mqtt = require("mqtt"); // Using MQTT.js npm
+const mongoose = require("mongoose");
+const app = express();
 
-![Imgur](https://i.imgur.com/6777rmg.png)
+app.use(express.json());
 
-The `vcapServices` can get the application environment on WISE-PaaS，so we can get our service config to connect it。
-
-![Imgur](https://i.imgur.com/Q6W8Z0S.png)
-
-![Imgur](https://i.imgur.com/5fMbEiX.png)
-
-Notice:You can add service instance by yourself
-
-![Imgur](https://i.imgur.com/ajqSsn1.png)
-
-#### Application Introduce
+// Typically in the hosting environment for node application, there's an env variable called 'PORT'
+const port = process.env.PORT || 3000;
+const server = app.listen(port, () =>
+  console.log(`Listening on port ${port}...`)
+);
+```
 
 This code can get the WISE-PaaS MongoDB service instance environment and connect it。
+
+The `vcap_services` save the application environment config on WISE-PaaS，so we can get our service config to connect it。
 
 ```js
 let vcap_services = JSON.parse(process.env.VCAP_SERVICES);
@@ -93,13 +96,52 @@ const bookSchema = new mongoose.Schema(
 );
 
 const Bookmq = mongoose.model("Bookmq", bookSchema);
-
 ```
+
+(The service name need same as WISE-PaaS platform service name)
+
+![Imgur](https://i.imgur.com/6777rmg.png)
+
+![Imgur](https://i.imgur.com/5fMbEiX.png)
+
+Notice:You can add service instance by yourself
+
+![Imgur](https://i.imgur.com/ajqSsn1.png)
 
 This code can connect the rabbitmq service
 and send data to MongoDB service
 
 ```js
+// Start Config
+var config = {};
+config.mqtt = {};
+
+/** Modify this config ***/
+// SYS
+config.timeout = 120 * 1000;
+
+config.mqtt.serviceName = "p-rabbitmq"; // 'p-rabbitmq'
+
+if (process.env.VCAP_SERVICES != null) {
+  console.log("Using VCAP_SERVICES");
+  vcap_services = JSON.parse(process.env.VCAP_SERVICES);
+}
+
+// Parsing credentials from VCAP_SERVICES for binding service
+if (vcap_services[config.mqtt.serviceName]) {
+  console.log("Parsing " + config.mqtt.serviceName);
+  config.mqtt.broker =
+    "mqtt://" +
+    vcap_services[config.mqtt.serviceName][0].credentials.protocols.mqtt.host;
+  config.mqtt.username = vcap_services[
+    config.mqtt.serviceName
+  ][0].credentials.protocols.mqtt.username.trim();
+  config.mqtt.password = vcap_services[
+    config.mqtt.serviceName
+  ][0].credentials.protocols.mqtt.password.trim();
+  config.mqtt.port =
+    vcap_services[config.mqtt.serviceName][0].credentials.protocols.mqtt.port;
+}
 
 config.mqtt.options = {
   broker: config.mqtt.broker,
@@ -140,14 +182,8 @@ client.on("message", function(topic, message) {
 });
 ```
 
-#### SSO(Single Sign On)
-
-This is the [sso](https://advantech.wistia.com/medias/vay5uug5q6) applicaition，open **`templates/index.html`** and editor the `ssoUrl` to your application name，
-
-If you don't want it，you can ignore it。
-  
-    #change this **`python-demo-try`** to your **application name**
-    var ssoUrl = myUrl.replace('python-demo-try', 'portal-sso');
+(Notice:The mqtt.serviceName also need to same on WISE-PaaS)
+![Imgur](https://i.imgur.com/Q6W8Z0S.png)
 
 ## Docker build application
 
@@ -196,6 +232,31 @@ check the `Service Instance name` in **manifest.yml** and **wise-paas service li
 Get application environment in WISE-PaaS
 
     cf env example-js-docker-iot-mongo > env.json
+
+## Publisher data to our application
+
+#### publisher.js
+
+```js
+const mqtt = require("mqtt");
+
+const mqttUri =
+  "mqtt://xxxxxxxx-xxxx-xxxx-xxxx-3721df301816%3A28c17966-6340-4dcf-a345-b85d52420fd1:3KfQAwA3lsg9JuxIU3DNhTg6m@40.81.26.31:1883";
+const client = mqtt.connect(mqttUri);
+
+client.on("connect", connack => {
+  setInterval(() => {
+    publistMockTemp();
+  }, 3000);
+});
+
+function publistMockTemp() {
+  const temp = Math.floor(Math.random() * 7 + 22);
+  client.publish("/hello", temp.toString(), { qos: 2 }, (err, packet) => {
+    if (!err) console.log("Data sent to /hello" + temp);
+  });
+}
+```
 
 #### Edit the **publisher.py** `mqttUri` to mqtt=>uri you can find in env.json
 
